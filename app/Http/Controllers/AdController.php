@@ -23,7 +23,8 @@ class AdController extends Controller
      */
     public function create()
     {
-
+        $branches = Branch::all();
+        return view('ads.create-ad', compact('branches'));
     }
 
     /**

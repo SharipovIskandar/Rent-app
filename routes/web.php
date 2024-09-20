@@ -8,7 +8,7 @@ use App\Models\Ad;
 use App\Models\Branch;
 use Illuminate\Http\Request;
 
-Route::get('/', function () {
+Route::get('/welcome', static function () {
     return view('welcome');
 });
 
@@ -21,13 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::get('/welcome', static function () {
-    return view('welcome');
-});
-Route::get('/login', static function (){
-    return view('auth.login');
-})->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+
 Route::get('/', static function () {
     return view('ads.home', ['ads' => Ad::all(), 'branches' => Branch::all()]);
 })->name('ads.home');
