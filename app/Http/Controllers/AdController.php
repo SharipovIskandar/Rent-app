@@ -15,7 +15,7 @@ class AdController extends Controller
     {
         $ads = Ad::all();
         $branches = Branch::all();
-        return view('home', compact('ads', 'branches'));
+        return view('ads.home', compact('ads', 'branches'));
     }
 
     /**
@@ -23,7 +23,7 @@ class AdController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -70,7 +70,7 @@ class AdController extends Controller
     {
         $ads = Branch::query()->find($request->branch_id)->ads;
         $branches = Branch::all();
-        return view('home', compact('ads', 'branches'));
+        return view('ads.home', compact('ads', 'branches'));
     }
 
     public function search(Request $request)
@@ -93,7 +93,7 @@ class AdController extends Controller
             })->get();
 
         $branches = Branch::all();
-        return view('home', compact('ads', 'branches'));
+        return view('ads.home', compact('ads', 'branches'));
     }
 
 

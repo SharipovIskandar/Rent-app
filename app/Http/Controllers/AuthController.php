@@ -16,7 +16,7 @@ class AuthController extends Controller
 
         if ($user && $user->password === $password) {
             auth()->login($user);
-            return redirect()->route('home');
+            return redirect()->route('ads.home');
         }
 
         return redirect()->back()->withErrors(['message' => 'Foydalanuvchi topilmadi yoki parol noto\'g\'ri!']);

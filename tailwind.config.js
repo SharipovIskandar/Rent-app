@@ -1,15 +1,18 @@
+import defaultTheme from 'tailwindcss/defaultTheme';
+import forms from '@tailwindcss/forms';
 const colors = require('tailwindcss/colors')
 const plugin = require('tailwindcss/plugin')
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
     content: [
-        "./src/**/*.{html,js}", "./node_modules/tw-elements/dist/js/**/*.js",
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+        './storage/framework/views/*.php',
+        './resources/views/**/*.blade.php',
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
         "./resources/**/*.vue",
     ],
-    darkMode: 'class',
-    important: true,
+
     theme: {
         screens: {
             xs: "540px",
