@@ -23,20 +23,21 @@
                                             </div>
 
                                             <div>
-                                                <label for="buy-properties"
-                                                       class="form-label font-medium text-slate-900 dark:text-white">Select
-                                                    Categories:</label>
+                                                <label for="buy-properties" class="form-label font-medium text-slate-900 dark:text-white">Select Categories:</label>
                                                 <div class="filter-search-form relative filter-border mt-2">
-                                                <i class="uil uil-estate icons"></i>
-                                                    <select class="form-select z-2" data-trigger name="branch_id"
-                                                            id="choices-category-buy"
-                                                            aria-label="Default select example">
+                                                    <i class="uil uil-estate icons"></i>
+                                                    <select class="form-input filter-input-box bg-gray-50 dark:bg-slate-800 border-0" name="branch_id">
+                                                        <option value="" disabled selected>Tanlang...</option>
                                                         @foreach ($branches as $branch)
-                                                        <option value="{{$branch->id}}">{{$branch->name}}</option>
-                                                        @endforeach;
+                                                            <option value="{{ $branch->id }}">{{ $branch->name }}</option>
+                                                        @endforeach
                                                     </select>
+                                                    <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                                                        <i class="uil uil-angle-down text-gray-500 dark:text-gray-400"></i>
+                                                    </div>
                                                 </div>
                                             </div>
+
 
                                             <div>
                                                 <label for="buy-min-price" class="form-label font-medium text-slate-900 dark:text-white">

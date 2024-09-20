@@ -72,4 +72,29 @@ class AdController extends Controller
         $branches = Branch::all();
         return view('home', compact('ads', 'branches'));
     }
+
+    public function search(Request $request)
+    {
+        $title = $request->input('search_phrase') ?? "";
+        $max_price = $request->input('max_price') ?? PHP_INT_MAX;
+        $min_price = $request->input('min_price') ?? 0;
+        $branch_id = $request->input('branch_id') ?? null;
+
+        $ads = Ad::query()
+            ->when($title, function ($query) use ($title) {
+                return $query->where('title', 'like', "%{$title}%")
+                    ->orWhere('description', 'like', "%{$title}%");
+            })->when($min_price, function ($query) use ($min_price) {
+                return $query->where('price', '>=', $min_price);
+            })->when($max_price, function ($query) use ($max_price) {
+                return $query->where('price', '<=', $max_price);
+            })->when($branch_id, function ($query) use ($branch_id) {
+                return $query->where('branch_id', $branch_id);
+            })->get();
+
+        $branches = Branch::all();
+        return view('home', compact('ads', 'branches'));
+    }
+
+
 }
