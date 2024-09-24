@@ -14,5 +14,5 @@
 
     @vite('resources/css/app.css')
 </head>
-<body class="dark:bg-slate-900">
+<body class="font-body text-base text-black dark:text-white dark:bg-slate-900">
 
