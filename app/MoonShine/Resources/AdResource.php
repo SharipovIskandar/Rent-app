@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
+use MoonShine\Fields\Number;
+use MoonShine\Fields\Text;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Ad;
 
@@ -30,6 +32,13 @@ class AdResource extends ModelResource
         return [
             Block::make([
                 ID::make()->sortable(),
+                Text::make('Sarlavha', 'title'),
+                Text::make("Ta'vsif", 'description'),
+                Text::make('Sarlavha', 'title'),
+                Text::make('Manzil', 'address'),
+                Number::make('Narxi', 'price'),
+                Number::make('Xonalari', 'rooms'),
+                Text::make('Filiali', 'branch'),
             ]),
         ];
     }

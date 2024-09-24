@@ -21,10 +21,10 @@ class AdController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(
+    ): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        $branches = Branch::all();
-        return view('ads.create-ad', compact('branches'));
+        return view('ads.create-ad');
     }
 
     /**
@@ -32,7 +32,16 @@ class AdController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ad = Ad::query()->create([
+           'title' => $request->get->title,
+           'description' => $request->get->description,
+            'address' => $request->get->address,
+            'branch_id' => $request->get->branch_id,
+            'user_id' => $request->get->user_id,
+            'status_id' => $request->get->status_id,
+            'price' => $request->get->price,
+            'rooms' => $request->get->rooms,
+        ]);
     }
 
     /**
@@ -40,7 +49,9 @@ class AdController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $ad = Ad::query()->findOrFail($id);
+        $branches = Branch::all();
+        return view('ads.show', compact('ad', 'branches'));
     }
 
     /**

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use App\MoonShine\Resources\AdResource;
+use App\MoonShine\Resources\BranchResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
 use MoonShine\MoonShine;
 use MoonShine\Menu\MenuGroup;
@@ -23,7 +24,9 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
      */
     protected function resources(): array
     {
-        return [];
+        return [
+            new AdResource()
+        ];
     }
 
     /**
@@ -50,7 +53,8 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                     new MoonShineUserRoleResource()
                 ),
             )),
-                MenuItem::make("E'lonlar", (AdResource::class))
+                MenuItem::make("E'lonlar", new AdResource()),
+                MenuItem::make("Filiallar", new BranchResource())
 
         ];
     }
