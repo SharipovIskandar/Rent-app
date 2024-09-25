@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\MoonShine\Resources\AdImageResource;
 use App\MoonShine\Resources\AdResource;
 use App\MoonShine\Resources\BranchResource;
+use App\MoonShine\Resources\UserResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
 use MoonShine\MoonShine;
 use MoonShine\Menu\MenuGroup;
@@ -53,8 +55,12 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                     new MoonShineUserRoleResource()
                 ),
             )),
-                MenuItem::make("E'lonlar", new AdResource()),
-                MenuItem::make("Filiallar", new BranchResource())
+                MenuItem::make("Asosiy Page", url('/'))->icon('heroicons.home')
+            ->customLinkAttributes(['target' => '_blank']),
+                MenuItem::make("E'lonlar", new AdResource())->icon('heroicons.home-modern'),
+                MenuItem::make("Filiallar", new BranchResource())->icon('heroicons.map-pin'),
+                MenuItem::make("Foydalanuvchilar", new UserResource())->icon('heroicons.user'),
+                MenuItem::make("Rasmlar", new AdImageResource())->icon('heroicons.photo'),
 
         ];
     }

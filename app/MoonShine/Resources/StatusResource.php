@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\MoonShine\Resources;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Branch;
+use App\Models\Status;
 
 use MoonShine\Fields\Text;
 use MoonShine\Resources\ModelResource;
@@ -14,16 +14,14 @@ use MoonShine\Fields\Field;
 use MoonShine\Components\MoonShineComponent;
 
 /**
- * @extends ModelResource<Branch>
+ * @extends ModelResource<Status>
  */
-class BranchResource extends ModelResource
+class StatusResource extends ModelResource
 {
-    protected string $model = Branch::class;
+    protected string $model = Status::class;
 
-    protected string $title = 'Branches';
-
+    protected string $title = 'Statuses';
     protected string $column = 'name';
-
 
     /**
      * @return list<Field>
@@ -32,8 +30,7 @@ class BranchResource extends ModelResource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Nomi', 'name'),
-            Text::make('Manzili', 'address'),
+            Text::make('Name')->sortable(),
         ];
     }
 
@@ -44,7 +41,8 @@ class BranchResource extends ModelResource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Nomi', 'name'),
+            Text::make('Name')->sortable(),
+
         ];
     }
 
@@ -55,13 +53,13 @@ class BranchResource extends ModelResource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Nomi', 'name'),
-            Text::make('Manzil', 'address'),
+            Text::make('Name')->sortable(),
+
         ];
     }
 
     /**
-     * @param Branch $item
+     * @param Status $item
      *
      * @return array<string, string[]|string>
      * @see https://laravel.com/docs/validation#available-validation-rules

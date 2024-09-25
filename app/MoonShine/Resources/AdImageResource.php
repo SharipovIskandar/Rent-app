@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
+use App\Models\Image;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Branch;
 
 use MoonShine\Fields\Text;
 use MoonShine\Resources\ModelResource;
@@ -14,16 +14,15 @@ use MoonShine\Fields\Field;
 use MoonShine\Components\MoonShineComponent;
 
 /**
- * @extends ModelResource<Branch>
+ * @extends ModelResource<Image>
  */
-class BranchResource extends ModelResource
+class AdImageResource extends ModelResource
 {
-    protected string $model = Branch::class;
+    protected string $model = Image::class;
 
-    protected string $title = 'Branches';
+    protected string $title = 'Images';
 
     protected string $column = 'name';
-
 
     /**
      * @return list<Field>
@@ -31,9 +30,7 @@ class BranchResource extends ModelResource
     public function indexFields(): array
     {
         return [
-            ID::make()->sortable(),
-            Text::make('Nomi', 'name'),
-            Text::make('Manzili', 'address'),
+            Text::make('Name', 'name'),
         ];
     }
 
@@ -44,7 +41,6 @@ class BranchResource extends ModelResource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Nomi', 'name'),
         ];
     }
 
@@ -55,13 +51,11 @@ class BranchResource extends ModelResource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Nomi', 'name'),
-            Text::make('Manzil', 'address'),
         ];
     }
 
     /**
-     * @param Branch $item
+     * @param Image $item
      *
      * @return array<string, string[]|string>
      * @see https://laravel.com/docs/validation#available-validation-rules

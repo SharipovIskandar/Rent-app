@@ -90,9 +90,11 @@
                         <img src="#" alt="">
 
                         <div class="absolute top-4 end-4">
+                            <form action="/ads/{id}/bookmark">
                             <a href="/like/<?= $ad->id ?>"
                                class="btn btn-icon bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full text-slate-100 dark:text-slate-700 focus:text-red-600 dark:focus:text-red-600 hover:text-red-600 dark:hover:text-red-600"><i
                                     class="mdi mdi-heart text-[20px]"></i></a>
+                        </form>
                         </div>
                     </div>
 

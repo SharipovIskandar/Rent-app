@@ -27,5 +27,6 @@ Route::get('/', static function () {
 })->name('ads.home');
 Route::resource('ads', AdController::class);
 Route::get('/search', [AdController::class, 'search']);
+Route::post('/ads/{id}/bookmark', []);
 
 require __DIR__.'/auth.php';
