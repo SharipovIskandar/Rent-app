@@ -4,6 +4,11 @@
             <div class="grid grid-cols-1 justify-center">
                 <div class="relative">
                     <div class="grid grid-cols-1">
+                        @if(session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
                         <form action="/search" method="get">
                             <div id="StarterContent"
                                  class="p-6 bg-white dark:bg-slate-900 rounded-ss-none rounded-se-none md:rounded-se-xl rounded-xl shadow-md dark:shadow-gray-700">

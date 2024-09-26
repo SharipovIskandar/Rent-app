@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Ad;
 use App\Models\Branch;
+use App\Models\Image;
+use App\Models\Status;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdController extends Controller
 {
@@ -32,16 +35,34 @@ class AdController extends Controller
      */
     public function store(Request $request)
     {
-        $ad = Ad::query()->create([
-           'title' => $request->get->title,
-           'description' => $request->get->description,
-            'address' => $request->get->address,
-            'branch_id' => $request->get->branch_id,
-            'user_id' => $request->get->user_id,
-            'status_id' => $request->get->status_id,
-            'price' => $request->get->price,
-            'rooms' => $request->get->rooms,
+        $request->validate([
+            'title'       => 'required|min:5',
+            'description' => 'required',
+            'image'       => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'title' => ['required' => 'Iltimos, sarlavhani kiriting!'],
         ]);
+
+        $ad = Ad::query()->create([
+            'title'       => $request->get('title'),
+            'description' => $request->get('description'),
+            'address'     => $request->get('address'),
+            'branch_id'   => $request->get('branch_id'),
+            'user_id'     => auth()->id(),
+            'status_id'   => Status::ACTIVE,
+            'price'       => $request->get('price'),
+            'rooms'       => $request->get('rooms'),
+        ]);
+
+        if($request->hasFile('image')) {
+            $file = Storage::disk('public')->put('/', $request->image);
+
+            Image::query()->create([
+                'ad_id' => $ad->id,
+                'name' => $file,
+            ]);
+        }
+        return redirect(route('ads.home'));
     }
 
     /**
