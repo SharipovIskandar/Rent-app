@@ -78,6 +78,11 @@
             </div><!--end grid-->
         </div><!--end container-->
         <div class="container relative">
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px]">
 
                 <?php
@@ -90,10 +95,10 @@
                         <img src="#" alt="">
 
                         <div class="absolute top-4 end-4">
-                            <form action="/ads/{id}/bookmark">
-                            <a href="/like/<?= $ad->id ?>"
-                               class="btn btn-icon bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full text-slate-100 dark:text-slate-700 focus:text-red-600 dark:focus:text-red-600 hover:text-red-600 dark:hover:text-red-600"><i
-                                    class="mdi mdi-heart text-[20px]"></i></a>
+                            <form action="/ads/{{$ad->id}}/bookmark" method="post">
+                                @csrf
+                            <button class="btn btn-icon bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full text-slate-100 dark:text-slate-700 focus:text-red-600 dark:focus:text-red-600 hover:text-red-600 dark:hover:text-red-600"><i
+                                    class="mdi mdi-heart text-[20px]"></i></button>
                         </form>
                         </div>
                     </div>

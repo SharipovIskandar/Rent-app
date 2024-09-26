@@ -33,14 +33,14 @@ class Ad extends Model
     {
         return $this->belongsTo(Status::class, 'status_id', 'id');
     }
-    public function user()
+    public function owner()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function adbookmark()
+    public function bookmarkedByUsers()
     {
-        return $this->belongsToMany(Adbookmark::class);
+        return $this->belongsToMany(User::class, 'bookmark')->withTimestamps();
     }
 
 }

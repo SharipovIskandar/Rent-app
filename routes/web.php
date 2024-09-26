@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdController;
 use App\Http\Controllers\AuthController;
@@ -27,6 +28,7 @@ Route::get('/', static function () {
 })->name('ads.home');
 Route::resource('ads', AdController::class);
 Route::get('/search', [AdController::class, 'search']);
-Route::post('/ads/{id}/bookmark', []);
+
+Route::post('/ads/{id}/bookmark', [UserController::class, 'toggleBookmarks'])->name('ads.bookmark');
 
 require __DIR__.'/auth.php';
